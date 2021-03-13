@@ -5,5 +5,8 @@
     <qresource prefix="/">
         <file>resources/profile.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>stylesheet/main.qss</file>
+    </qresource>
     
 </RCC>

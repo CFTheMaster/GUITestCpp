@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="6.0">
+<ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>243</width>
-    <height>111</height>
+    <width>1042</width>
+    <height>1084</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CBT is what you want!</string>
+   <string>WTF am I doing with my life?</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/resources/profile.png</normaloff>:/resources/profile.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#watermark {
+	width: 20%;
+	height: auto;
+}</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-     <widget class="QLabel" name="label">
+    <item row="0" column="0">
+     <widget class="QLabel" name="watermark">
       <property name="text">
        <string/>
       </property>
@@ -24,21 +34,7 @@
        <pixmap resource="resources.qrc">:/resources/profile.png</pixmap>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLTop</set>
-       <set>Qt::AlignLeft</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="resources.qrc">:/resources/helloworld-transparent.png</pixmap>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignLeading</set>
       </property>
      </widget>
     </item>
@@ -49,8 +45,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>243</width>
-     <height>21</height>
+     <width>1042</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
