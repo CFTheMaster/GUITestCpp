@@ -11,10 +11,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
 message("Looking for Qt...")
-# Qt modules (https://doc.qt.io/qt-5/qtmodules.html) you're using in your application
-find_package(Qt5 REQUIRED Widgets)
-if (${Qt5_FOUND})
-    message("Found Qt " ${Qt5_VERSION})
+# Qt modules (https://doc.qt.io/qt-6/qtmodules.html) you're using in your application
+find_package(Qt6 REQUIRED Widgets)
+if (${Qt6_FOUND})
+    message("Found Qt " ${Qt6_VERSION})
 else()
     message("Couldn't find Qt")
 endif()
@@ -32,5 +32,5 @@ add_executable(${CMAKE_PROJECT_NAME} WIN32 ${sources})
 # otherwise it'll think that you wanted to find those just for fun and won't link them
 target_link_libraries(
     ${CMAKE_PROJECT_NAME}
-    Qt5::Widgets
+    Qt6::Widgets
     )
