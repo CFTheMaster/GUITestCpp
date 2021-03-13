@@ -39,3 +39,4 @@ cmake_install.cmake
 GUITest
 Makefile
 GUITest_autogen
+.cmake

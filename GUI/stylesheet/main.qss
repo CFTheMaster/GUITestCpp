@@ -1,8 +1,0 @@
-* {
-    background: #6600cc;
-}
-
-QLabel {
-	width: 20%;
-	height: auto;
-}

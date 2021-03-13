@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QFile>
+#include <QLabel>
+#include <QPixmap>
 
 
 QByteArray readTextFile(const QString &file_path) {
@@ -23,7 +25,7 @@ int main(int argc, char *argv[])
 
     QString style_sheet = readTextFile(":/stylesheets/main.qss");
     app.setStyleSheet(style_sheet);
-    
+
     MainWindow window;
     window.show();
 
