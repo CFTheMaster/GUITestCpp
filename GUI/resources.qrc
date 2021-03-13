@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/helloworld-transparent.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>resources/profile.png</file>
+    </qresource>
+    
+</RCC>

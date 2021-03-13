@@ -32,3 +32,10 @@
 *.app
 
 .vscode
+
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+GUITest
+Makefile
+GUITest_autogen
