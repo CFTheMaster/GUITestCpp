@@ -40,3 +40,5 @@ GUITest
 Makefile
 GUITest_autogen
 .cmake
+
+CMakeLists.txt.user
