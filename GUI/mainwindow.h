@@ -20,6 +20,12 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+protected:
+    void paintEvent(QPaintEvent *event);
+    void resizeEvent(QResizeEvent *event);
 };
+
+
 
 #endif // MAINWINDOW_H
