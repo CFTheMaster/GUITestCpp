@@ -10,6 +10,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Network REQUIRED)
 
 add_executable(GUITest
     GUI/mainwindow.ui
@@ -19,3 +20,4 @@ add_executable(GUITest
 )
 
 target_link_libraries(GUITest PRIVATE Qt6::Widgets)
+target_link_libraries(GUITest PRIVATE Qt6::Network)

@@ -1,30 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QPainter>
-#include <QGraphicsOpacityEffect>
-#include <QScreen>
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-{
-    int scaled = 75;
-    QPixmap pixmap(":/resources/profile.png");
-    QPixmap temp(pixmap.scaled(scaled, scaled, Qt::KeepAspectRatio).size());
-    temp.fill(Qt::transparent);
-
-    QPainter p(&temp);
-
-    p.setCompositionMode(QPainter::CompositionMode_Source);
-    p.drawPixmap(0,0, pixmap.scaled(scaled, scaled, Qt::KeepAspectRatio));
-    p.setCompositionMode(QPainter::CompositionMode_DestinationIn);
-    p.fillRect(temp.rect(), QColor(0,0,0,150));
-    p.end();
-
-    pixmap = temp;
-
+{    
     ui->setupUi(this);
-    ui->watermark->setPixmap(pixmap);
 }
 
 MainWindow::~MainWindow()
@@ -39,7 +22,11 @@ void MainWindow::on_actionExit_triggered()
     this->close();
 }
 
+
 void MainWindow::paintEvent(QPaintEvent *event){
+    int scaled = 80;
+    QPixmap pixmap(":/resources/profile.png");
+    ui->thingThatAnnoys->setPixmap(pixmap.scaled(scaled, scaled, Qt::KeepAspectRatio));
 
     QPainter p2(this);
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -59,9 +46,48 @@ void MainWindow::paintEvent(QPaintEvent *event){
     p2.fillRect(rect_linear, linearGrad);
     p2.end();
 
-    QWidget::paintEvent(event);
+
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event){
     QMainWindow::resizeEvent(event);
+}
+
+void MainWindow::on_refresh_clicked()
+{
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onImageResult);
+    const QUrl url("https://api.computerfreaker.pw/v1/anime");
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("user-agent", "GUITest + QT6");
+    manager->get(request);
+}
+
+void MainWindow::onImageResult(QNetworkReply *reply){
+    QJsonParseError jerror;
+    QJsonDocument d = QJsonDocument::fromJson(reply->readAll(), &jerror);
+    if(jerror.error != QJsonParseError::NoError){
+        qDebug() << jerror.errorString();
+    }
+    QJsonObject obj = d.object();
+
+    QUrl uri(obj["url"].toString());
+
+    QNetworkAccessManager* netAccManager = new QNetworkAccessManager;
+    QNetworkRequest request2(uri);
+    QNetworkReply *reply2 = netAccManager->get(request2);
+    QEventLoop loop;
+    QObject::connect(reply2, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+    QByteArray bytes = reply2->readAll();
+    QImage img(20, 20, QImage::Format_Indexed8);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry  = screen->geometry();
+    img.loadFromData(bytes);
+    ui->displayImage->setPixmap(QPixmap::fromImage(img).scaled(screenGeometry.width() -200, screenGeometry.height()-200, Qt::KeepAspectRatio));
+    ui->scrollArea->setGeometry(0,0, QPixmap::fromImage(img).scaled(screenGeometry.width() +50, screenGeometry.height(), Qt::KeepAspectRatio).width(), QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height()+50, Qt::KeepAspectRatio).height());
+
+    qDebug() << img;
+
 }

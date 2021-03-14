@@ -2,6 +2,22 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPainter>
+#include <QGraphicsOpacityEffect>
+#include <QScreen>
+#include <QUrl>
+#include <fstream>
+#include "single_include/nlohmann/json.hpp"
+#include <QtNetwork/QNetworkAccessManager>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QXmlStreamReader>
+#include <QtNetwork/QNetworkReply>
+#include <QFile>
+#include <QPixmap>
+#include <QVBoxLayout>
+#include <QScrollArea>
 
 namespace Ui {
 class MainWindow;
@@ -17,13 +33,17 @@ public:
 
 private slots:
     void on_actionExit_triggered();
+    void onImageResult(QNetworkReply*);
+    void on_refresh_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QNetworkAccessManager *manager;
+    QNetworkRequest request;
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void resizeEvent(QResizeEvent *event);
+    void paintEvent(QPaintEvent*);
+    void resizeEvent(QResizeEvent*);
 };
 
 
