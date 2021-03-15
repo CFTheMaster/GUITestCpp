@@ -86,7 +86,7 @@ void MainWindow::onImageResult(QNetworkReply *reply){
     QRect screenGeometry  = screen->geometry();
     img.loadFromData(bytes);
     ui->displayImage->setPixmap(QPixmap::fromImage(img).scaled(screenGeometry.width() -200, screenGeometry.height()-200, Qt::KeepAspectRatio));
-    ui->scrollArea->setGeometry(0,0, QPixmap::fromImage(img).scaled(screenGeometry.width() +50, screenGeometry.height(), Qt::KeepAspectRatio).width(), QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height()+50, Qt::KeepAspectRatio).height());
+    ui->scrollArea->setGeometry(0,0, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).width() -100, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).height() -100);
 
     qDebug() << img;
 
