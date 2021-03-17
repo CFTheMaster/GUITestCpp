@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/helloworld-transparent.png</file>
         <file>resources/profile.png</file>
-        <file>stylesheet/main.qss</file>
         <file>resources/profile.ico</file>
         <file>resources/profile.rc</file>
     </qresource>

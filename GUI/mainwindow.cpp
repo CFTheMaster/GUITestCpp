@@ -53,7 +53,7 @@ void MainWindow::resizeEvent(QResizeEvent *event){
     QMainWindow::resizeEvent(event);
 }
 
-void MainWindow::on_refresh_clicked()
+void MainWindow::on_anime_clicked()
 {
     MainWindow::onImageFromApi("anime");
 }
@@ -80,7 +80,8 @@ void MainWindow::onImageResult(QNetworkReply *reply){
     QRect screenGeometry  = screen->geometry();
     img.loadFromData(bytes);
     ui->displayImage->setPixmap(QPixmap::fromImage(img).scaled(screenGeometry.width() -200, screenGeometry.height()-200, Qt::KeepAspectRatio));
-    ui->scrollArea->setGeometry(0,0, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).width() -100, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).height() -100);
+    ui->scrollArea->setGeometry(0,0, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).width() -100,
+                                QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).height() -100);
 
 
 }

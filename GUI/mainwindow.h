@@ -40,7 +40,7 @@ private slots:
 
     void onImageResult(QNetworkReply*);
 
-    void on_refresh_clicked();
+    void on_anime_clicked();
 
     void on_neko_clicked();
 

@@ -24,7 +24,7 @@
      <height>600</height>
     </size>
    </property>
-   <widget class="QPushButton" name="refresh">
+   <widget class="QPushButton" name="anime">
     <property name="geometry">
      <rect>
       <x>1000</x>
@@ -160,7 +160,7 @@
    </widget>
    <zorder>verticalLayoutWidget</zorder>
    <zorder>thingThatAnnoys</zorder>
-   <zorder>refresh</zorder>
+   <zorder>anime</zorder>
    <zorder>neko</zorder>
    <zorder>hug</zorder>
    <zorder>yuri</zorder>
