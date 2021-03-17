@@ -9,6 +9,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/GUI/resources/profile.rc")
+
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Qt6 COMPONENTS Network REQUIRED)
 
@@ -17,6 +19,7 @@ add_executable(GUITest
     GUI/mainwindow.cpp
     GUI/main.cpp
     GUI/resources.qrc
+    ${app_icon_resource_windows}
 )
 
 target_link_libraries(GUITest PRIVATE Qt6::Widgets)
