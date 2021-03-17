@@ -102,7 +102,7 @@ void MainWindow::on_yuri_clicked()
 }
 
 void MainWindow::onImageFromApi(QString uri){
-    QByteArray headText = "GUITest + QT6/";
+    QByteArray headText = "GUITest + QT6 / ";
     headText.append(uri.toUtf8());
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onImageResult);
