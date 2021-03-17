@@ -18,6 +18,10 @@
 #include <QPixmap>
 #include <QVBoxLayout>
 #include <QScrollArea>
+#include <QApplication>
+#include <QLabel>
+#include <stdlib.h>
+
 
 namespace Ui {
 class MainWindow;
@@ -33,8 +37,18 @@ public:
 
 private slots:
     void on_actionExit_triggered();
+
     void onImageResult(QNetworkReply*);
+
     void on_refresh_clicked();
+
+    void on_neko_clicked();
+
+    void on_hug_clicked();
+
+    void on_yuri_clicked();
+
+    void on_baguette_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -44,6 +58,7 @@ private:
 protected:
     void paintEvent(QPaintEvent*);
     void resizeEvent(QResizeEvent*);
+    void onImageFromApi(QString);
 };
 
 

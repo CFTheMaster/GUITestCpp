@@ -1,8 +1,5 @@
 #include "mainwindow.h"
-#include <QApplication>
-#include <QFile>
-#include <QLabel>
-#include <QPixmap>
+
 
 
 QByteArray readTextFile(const QString &file_path) {

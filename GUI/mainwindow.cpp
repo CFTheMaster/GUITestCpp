@@ -6,7 +6,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-{    
+{
     ui->setupUi(this);
 }
 
@@ -55,13 +55,7 @@ void MainWindow::resizeEvent(QResizeEvent *event){
 
 void MainWindow::on_refresh_clicked()
 {
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onImageResult);
-    const QUrl url("https://api.computerfreaker.pw/v1/anime");
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("user-agent", "GUITest + QT6");
-    manager->get(request);
+    MainWindow::onImageFromApi("anime");
 }
 
 void MainWindow::onImageResult(QNetworkReply *reply){
@@ -88,6 +82,37 @@ void MainWindow::onImageResult(QNetworkReply *reply){
     ui->displayImage->setPixmap(QPixmap::fromImage(img).scaled(screenGeometry.width() -200, screenGeometry.height()-200, Qt::KeepAspectRatio));
     ui->scrollArea->setGeometry(0,0, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).width() -100, QPixmap::fromImage(img).scaled(screenGeometry.width(), screenGeometry.height(), Qt::KeepAspectRatio).height() -100);
 
-    qDebug() << img;
 
+}
+
+void MainWindow::on_neko_clicked()
+{
+    MainWindow::onImageFromApi("neko");
+}
+
+void MainWindow::on_hug_clicked()
+{
+    MainWindow::onImageFromApi("hug");
+}
+
+void MainWindow::on_yuri_clicked()
+{
+    MainWindow::onImageFromApi("yuri");
+}
+
+void MainWindow::onImageFromApi(QString uri){
+    QByteArray headText = "GUITest + QT6/";
+    headText.append(uri.toUtf8());
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onImageResult);
+    const QUrl url("https://api.computerfreaker.pw/v1/" + uri);
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("user-agent", headText);
+    manager->get(request);
+}
+
+void MainWindow::on_baguette_clicked()
+{
+    MainWindow::onImageFromApi("baguette");
 }
